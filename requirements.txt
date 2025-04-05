@@ -1,0 +1,12 @@
+# Required packages
+numpy
+pandas
+tensorflow
+stable-baselines3
+optuna
+shap
+PyWavelets
+pywt
+scikit-learn
+matplotlib
+
