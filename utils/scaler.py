@@ -1,4 +1,9 @@
 # Scaler module
+import numpy as np
+import os
+from sklearn.preprocessing import StandardScaler
+
+
 def get_scaler(env, num_samples=2000):
     """
     Collect random states by stepping env with random actions.

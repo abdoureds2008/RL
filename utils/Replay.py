@@ -1,5 +1,7 @@
 # 5) EXPERIENCE REPLAY
 ############################
+import numpy as np
+
 class ReplayBuffer:
     def __init__(self, obs_dim, size=10000):
         self.obs1_buf = np.zeros((size, obs_dim), dtype=np.float32)

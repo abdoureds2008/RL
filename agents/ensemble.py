@@ -1,4 +1,6 @@
 # Ensemble module
+import numpy as np
+
 class EnsembleAgent:
     """
     Example: Weighted or majority vote across multiple discrete agents.

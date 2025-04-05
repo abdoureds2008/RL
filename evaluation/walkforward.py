@@ -1,4 +1,10 @@
 # Walkforward module
+import numpy as np
+from agents.double_dqn import DoubleDQNAgent
+from utils.scaler import get_scaler
+from evaluation.play import play_one_episode
+from envs.multi_asset_env import MultiAssetEnv
+
 def walkforward_eval(agent_params, env_params, data_splits, episodes=50):
     results = []
     for i,(train_df,test_df) in enumerate(data_splits):

@@ -1,4 +1,13 @@
 # Double_dqn module
+import numpy as np
+from tensorflow.keras.layers import Dense, Input, LSTM, Reshape, Dropout
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+from utils.models import create_lstm_model
+
+from utils.Replay import ReplayBuffer
+
+
 
 class DoubleDQNAgent:
     """

@@ -1,4 +1,7 @@
 # Ppo_agent module
+from stable_baselines3 import PPO
+from stable_baselines3.common.vec_env import DummyVecEnv
+
 class PPOAgent:
     def __init__(self, env_fn, policy='MlpPolicy', lr=1e-3, gamma=0.99, verbose=1):
         self.env = DummyVecEnv([env_fn])

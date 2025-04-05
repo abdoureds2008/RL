@@ -1,4 +1,7 @@
-# Lstm_model module
+# utils/models.py
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, LSTM, Dense, Reshape, Dropout
+from tensorflow.keras.optimizers import Adam
 
 def create_lstm_model(state_dim, action_dim, hidden=64, dropout=0.2, lr=1e-3):
     inp = Input(shape=(state_dim,))

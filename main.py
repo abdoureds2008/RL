@@ -1,5 +1,66 @@
-from utils.imports_and_gpu import configure_gpu
-configure_gpu()
+import numpy as np
+import pandas as pd
+import argparse
+import os
+import pickle
+import time
+from datetime import datetime
+from collections import deque
+from utils.scaler import maybe_make_dir
+import tensorflow as tf
+from tensorflow.keras.layers import Dense, Input, LSTM, Reshape, Dropout
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+from tensorflow.summary import create_file_writer
+
+# For continuous agent (PPO)
+from stable_baselines3 import PPO
+from stable_baselines3.common.vec_env import DummyVecEnv
+
+# Hyperparameter optimization
+import optuna
+
+# SHAP for interpretability
+import shap
+
+# Wavelet transforms (if installed)
+try:
+    import pywt
+except ImportError:
+    pywt = None
+
+# Sklearn for scaling / dimension reduction
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from agents.double_dqn import DoubleDQNAgent
+from agents.ppo_agent import PPOAgent
+from agents.ensemble import EnsembleAgent
+from envs.multi_asset_env import MultiAssetEnv
+from utils.Replay import ReplayBuffer
+from utils.scaler import get_scaler, maybe_make_dir
+from utils.tensorboard_tools import setup_tensorboard, log_metrics
+from utils.retraining import periodic_retraining
+from utils.Optimisation import hyperparam_optimization
+from evaluation.play import play_one_episode
+from evaluation.walkforward import walkforward_eval
+from data.loader import (
+    load_price_data,
+    load_intraday_data,
+    load_fundamental_data,
+    load_sentiment_data,
+    merge_data
+)
+
+
+def configure_gpu():
+    gpus = tf.config.list_physical_devices('GPU')
+    if gpus:
+        try:
+            for gpu in gpus:
+                tf.config.experimental.set_memory_growth(gpu, True)
+            print("GPU configured for memory growth.")
+        except RuntimeError as e:
+            print(e)
 
 def main():
     parser = argparse.ArgumentParser()

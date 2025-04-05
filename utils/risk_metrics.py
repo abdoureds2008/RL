@@ -1,3 +1,13 @@
+import numpy as np
+import pandas as pd
+
+try:
+    import pywt
+except ImportError:
+    pywt = None
+import numpy as np
+from datetime import datetime
+
 # Metrics module
 def compute_var(returns, confidence=0.95):
     if len(returns)==0:

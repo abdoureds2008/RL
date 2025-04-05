@@ -1,4 +1,7 @@
 # Play module
+import numpy as np
+import tensorflow as tf
+
 def play_one_episode(agent, env, scaler, mode='train', tb_writer=None, ep=0):
     """
     If tb_writer is not None, logs Q-value distribution for discrete agents each episode.

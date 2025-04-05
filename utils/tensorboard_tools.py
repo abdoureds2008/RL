@@ -1,3 +1,6 @@
+import tensorflow as tf
+from tensorflow.summary import create_file_writer
+
 def setup_tensorboard(log_dir='logs'):
     writer = create_file_writer(log_dir)
     return writer

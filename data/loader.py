@@ -1,3 +1,5 @@
+import pandas as pd
+import numpy as np
 def load_price_data():
     """
     Loads daily price data from 'aapl_msi_sbux.csv' located in your prices folder.
